@@ -3,9 +3,29 @@ $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
 $head = Get-Content -Raw -Encoding UTF8 (Join-Path $root "src\pwa-head.html")
 $body = Get-Content -Raw -Encoding UTF8 (Join-Path $root "src\app.html")
-$out = $head + $body + "`n</body>`n</html>`n"
-[System.IO.File]::WriteAllText((Join-Path $root "docs\index.html"), $out, (New-Object System.Text.UTF8Encoding($false)))
-Write-Output "docs/index.html gebouwd"
+$utf8 = New-Object System.Text.UTF8Encoding($false)
+
+# Reservekopie van de nieuwste editie in de pagina zelf (gebruikt als data/*.json niet opgehaald kan worden).
+$indexRaw = Get-Content -Raw -Encoding UTF8 (Join-Path $root "docs\data\index.json")
+$index = $indexRaw | ConvertFrom-Json
+$latest = $index.editions | Where-Object { $_.id -eq $index.latest } | Select-Object -First 1
+$editionRaw = Get-Content -Raw -Encoding UTF8 (Join-Path $root ("docs\data\" + $latest.file.Replace("/", "\")))
+$null = $editionRaw | ConvertFrom-Json  # controleert dat het geldige JSON is
+$embedJson = '{"data/index.json":' + $indexRaw.Trim() + ',"data/' + $latest.file + '":' + $editionRaw.Trim() + '}'
+$embedJson = $embedJson.Replace("</", "<\/")
+$embedTag = '<script id="embedded-data" type="application/json">' + $embedJson + "</script>`n"
+$m = [regex]::Match($body, '<script>\s*\(function \(\)')
+if (-not $m.Success) { throw "Hoofdscript niet gevonden in src/app.html" }
+$bodyWithData = $body.Insert($m.Index, $embedTag)
+
+$out = $head + $bodyWithData + "`n</body>`n</html>`n"
+[System.IO.File]::WriteAllText((Join-Path $root "docs\index.html"), $out, $utf8)
+Write-Output "docs/index.html gebouwd (met reservekopie van editie $($latest.id))"
+
+# Versie voor de Claude-demo (zonder <head>, de artifact-skeleton voegt die toe).
+New-Item -ItemType Directory -Force (Join-Path $root "build") | Out-Null
+[System.IO.File]::WriteAllText((Join-Path $root "build\artifact.html"), $bodyWithData, $utf8)
+Write-Output "build/artifact.html gebouwd"
 
 $iconDir = Join-Path $root "docs\icons"
 New-Item -ItemType Directory -Force $iconDir | Out-Null

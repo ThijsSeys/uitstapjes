@@ -700,11 +700,24 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
     }, function (err) { throw tagged("net", "Geen antwoord van de server voor " + url + " (" + (err && err.message || err) + ")"); })
       .then(function (txt) { try { return JSON.parse(txt); } catch (e) { throw tagged("data", "Ongeldige gegevens in " + url); } });
   }
+  var embeddedCache;
+  function embedded(url) {
+    // build.ps1 puts a copy of the latest edition in the page, used when the data file cannot be fetched.
+    if (embeddedCache === undefined) {
+      try { var el = document.getElementById("embedded-data"); embeddedCache = el ? JSON.parse(el.textContent) : null; }
+      catch (e) { embeddedCache = null; }
+    }
+    return embeddedCache && embeddedCache[url] ? JSON.parse(JSON.stringify(embeddedCache[url])) : null;
+  }
   function getJSON(url) {
-    // One retry with plain caching: a single network hiccup should not empty the app.
+    // One retry with plain caching, then the copy built into the page.
     return fetchOnce(url, { cache: "no-cache" }).catch(function (e) {
       if (e.kind === "data") throw e;
       return new Promise(function (res) { setTimeout(res, 800); }).then(function () { return fetchOnce(url, {}); });
+    }).catch(function (e) {
+      var copy = embedded(url);
+      if (copy) { if (window.console) console.warn("[Uitstapjes] ingebouwde kopie gebruikt voor " + url, e); return copy; }
+      throw e;
     });
   }
   function loadEdition(id) {
