@@ -188,6 +188,12 @@ details .facts { margin-top: 10px; }
 .btn[aria-pressed="true"].fav { background: var(--second); color: var(--surface); border-color: var(--second); }
 .btn[aria-pressed="true"].did { background: var(--good); color: var(--surface); border-color: var(--good); }
 .spacer { flex: 1; }
+.cal summary.btn { list-style: none; width: fit-content; }
+.cal summary.btn::-webkit-details-marker { display: none; }
+.cal summary.btn::before { content: none; }
+.cal[open] summary.btn { background: var(--accent-soft); border-color: transparent; }
+.cal-days { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
+.cal-note { flex-basis: 100%; font-size: 12px; color: var(--muted); }
 
 .empty { text-align: center; color: var(--muted); padding: 32px 12px; background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); }
 .empty strong { display: block; color: var(--fg); font-family: var(--font-display); font-size: 18px; margin-bottom: 4px; }
@@ -408,6 +414,7 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
     link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
     share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>',
     heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>',
+    cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M12 13v5M9.5 15.5h5"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
   };
 
@@ -511,6 +518,43 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
     return "https://wa.me/?text=" + encodeURIComponent(txt);
   }
 
+  function weekendOf(t) {
+    if (!state.edition) return null;
+    for (var i = 0; i < state.edition.weekends.length; i++) {
+      if (state.edition.weekends[i].tips.some(function (x) { return x.id === t.id; })) return state.edition.weekends[i];
+    }
+    return null;
+  }
+  function ymd(iso) { return iso.replace(/-/g, ""); }
+  function nextDay(iso) { var d = new Date(iso + "T12:00:00"); d.setDate(d.getDate() + 1); return d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + String(d.getDate()).padStart(2, "0"); }
+  function gcalUrl(t, iso) {
+    var details = [
+      t.why,
+      t.hours ? "Uren: " + t.hours : "",
+      t.price ? "Prijs: " + t.price : "",
+      t.booking ? "Reserveren: " + t.booking : "",
+      t.check ? "Let op: " + t.check : "",
+      t.url ? "Website: " + t.url : "",
+      "Route vanaf " + ORIGIN + ": " + mapsUrl(t),
+      "Via Uitstapjes"
+    ].filter(Boolean).join("\n");
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent(t.title) +
+      "&dates=" + ymd(iso) + "/" + nextDay(iso) +
+      "&details=" + encodeURIComponent(details) +
+      "&location=" + encodeURIComponent(t.destination || t.place) +
+      "&ctz=Europe%2FBrussels";
+  }
+  function calHTML(t, wk) {
+    var w = wk || weekendOf(t); if (!w) return "";
+    var days = w.days.filter(function (d) { return t.days.indexOf(d.day) >= 0; });
+    if (!days.length) return "";
+    return '<details class="cal"><summary class="btn">' + I.cal + 'In agenda</summary><div class="cal-days">' +
+      days.map(function (d) {
+        return '<a class="btn" href="' + esc(gcalUrl(t, d.date)) + '" target="_blank" rel="noopener">' + esc((function (s) { return s.charAt(0).toUpperCase() + s.slice(1); })(fmtDate(d.date))) + '</a>';
+      }).join("") + '<span class="cal-note">Opent Google Agenda als afspraak voor de hele dag.</span></div></details>';
+  }
+
   function cardHTML(t, wk) {
     var isFav = !!state.favs[t.id], isDone = !!state.done[t.id];
     var rainy = wk && t.days.some(function (d) { var w = dayWeather(wk, d); return w && w.rain >= 45; });
@@ -542,6 +586,7 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
       '<dl class="facts"><div><dt>Prijs</dt><dd>' + esc(t.price || "–") + '</dd></div><div><dt>Voor wie</dt><dd>' + ages + '</dd></div></dl>' +
       '<details><summary>Praktisch</summary>' + facts + '</details>' +
       (t.check ? '<div class="check">' + esc(t.check) + '</div>' : "") +
+      calHTML(t, wk) +
       '<div class="actions">' +
         '<a class="btn primary" href="' + mapsUrl(t) + '" target="_blank" rel="noopener">' + I.route + 'Route</a>' +
         '<a class="btn" href="' + wazeUrl(t) + '" target="_blank" rel="noopener">Waze</a>' +
