@@ -166,10 +166,6 @@ main { padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24
 .age small { font-weight: 500; }
 .forwho { font-size: 14px; color: var(--muted); margin-top: -6px; }
 .forwho b { color: var(--fg); }
-.onboard { display: grid; gap: 4px; text-decoration: none; color: var(--fg); background: var(--second-soft); border-radius: var(--radius); padding: 14px; }
-.onboard strong { font-family: var(--font-display); font-weight: 600; font-size: 17px; }
-.onboard span { font-size: 13px; color: var(--muted); }
-.onboard em { font-style: normal; font-weight: 700; color: var(--accent); font-size: 13px; }
 .kids { display: grid; gap: 10px; }
 .kid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 10px; align-items: end; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
 .kid label { display: grid; gap: 4px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); min-width: 0; }
@@ -232,7 +228,6 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
 <main class="wrap">
   <section class="view" id="view-tips" aria-label="Tips">
     <div class="banner" id="editionBanner" hidden></div>
-    <a class="onboard" id="onboard" href="#gezin" hidden><strong>Vul je gezin in</strong><span>Geef de geboortedata van je kinderen. Dan toont elke tip voor wie hij past, en groeien de tips mee met hun leeftijd.</span><em>Naar Gezin →</em></a>
     <div class="seg" role="group" aria-label="Kies weekend" id="weekendSeg"></div>
     <div class="forwho" id="forWho" hidden></div>
     <div class="weather" id="weather"></div>
@@ -569,7 +564,6 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
 
   function renderForWho() {
     var kids = validKids(), el = document.getElementById("forWho");
-    document.getElementById("onboard").hidden = kids.length > 0;
     el.hidden = !kids.length;
     if (!kids.length || !state.edition) return;
     var d = refDate(state.edition.weekends[state.weekend]);
