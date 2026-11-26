@@ -708,11 +708,47 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
   window.addEventListener("hashchange", route);
 
   // ---------- data ----------
-  function getJSON(url) { return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  function tagged(kind, msg) { var e = new Error(msg); e.kind = kind; return e; }
+  function fetchOnce(url, opts) {
+    return fetch(url, opts).then(function (r) {
+      if (!r.ok) throw tagged("http", "Server antwoordde " + r.status + " voor " + url);
+      return r.text();
+    }, function (err) { throw tagged("net", "Geen antwoord van de server voor " + url + " (" + (err && err.message || err) + ")"); })
+      .then(function (txt) { try { return JSON.parse(txt); } catch (e) { throw tagged("data", "Ongeldige gegevens in " + url); } });
+  }
+  function getJSON(url) {
+    // One retry with plain caching: a single network hiccup should not empty the app.
+    return fetchOnce(url, { cache: "no-cache" }).catch(function (e) {
+      if (e.kind === "data") throw e;
+      return new Promise(function (res) { setTimeout(res, 800); }).then(function () { return fetchOnce(url, {}); });
+    });
+  }
   function loadEdition(id) {
     var e = state.index.editions.filter(function (x) { return x.id === id; })[0];
-    return getJSON("data/" + e.file).then(function (ed) { state.edition = ed; state.editionId = id; state.weekend = 0; renderAll(); if (id === state.index.latest) refreshWeather(); });
+    if (!e) return Promise.reject(tagged("data", "Editie " + id + " staat niet in de lijst"));
+    return getJSON("data/" + e.file).then(function (ed) {
+      state.edition = ed; state.editionId = id; state.weekend = 0;
+      try { renderAll(); } catch (err) { err.kind = "render"; throw err; }
+      if (id === state.index.latest) refreshWeather();
+    });
   }
+  function showLoadError(err) {
+    if (window.console) console.error("[Uitstapjes]", err);
+    var kind = err && err.kind, offline = navigator.onLine === false;
+    var title = offline || kind === "net" ? "Geen verbinding met de tips" :
+      kind === "render" ? "Er liep iets mis bij het tonen van de tips" : "De tips konden niet laden";
+    var hint = offline ? "Je toestel lijkt offline. Controleer wifi of mobiele data." :
+      kind === "net" ? "De app kon de server niet bereiken." :
+      kind === "render" ? "Dit is een fout in de app, niet in je internetverbinding." : "";
+    document.getElementById("list").innerHTML = '<div class="empty"><strong>' + esc(title) + '</strong>' + esc(hint) +
+      '<p class="count" style="margin:8px 0 12px;word-break:break-word">Technisch: ' + esc(err && err.message || String(err)) + '</p>' +
+      '<button type="button" class="btn primary" id="retryLoad">Opnieuw proberen</button></div>';
+  }
+  function start() {
+    document.getElementById("list").innerHTML = '<div class="empty"><strong>Tips laden…</strong></div>';
+    return getJSON("data/index.json").then(function (idx) { state.index = idx; return loadEdition(idx.latest); }).catch(showLoadError);
+  }
+  document.addEventListener("click", function (e) { if (e.target.closest("#retryLoad")) start(); });
   function refreshWeather() {
     // Live update where the network allows it; otherwise the forecast stored in the edition stays.
     var ctrl = window.AbortController ? new AbortController() : null;
@@ -733,10 +769,7 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
   renderKids();
   renderForWho();
   route();
-  getJSON("data/index.json").then(function (idx) { state.index = idx; return loadEdition(idx.latest); })
-    .catch(function () {
-      document.getElementById("list").innerHTML = '<div class="empty"><strong>De tips konden niet laden</strong>Controleer je internetverbinding en open de app opnieuw.</div>';
-    });
+  start();
 
   if ("serviceWorker" in navigator && location.protocol === "https:" && !/claude/.test(location.hostname)) {
     try { navigator.serviceWorker.register("sw.js").catch(function () {}); } catch (e) {}
