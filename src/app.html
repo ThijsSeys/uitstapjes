@@ -302,6 +302,7 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
 (function () {
   "use strict";
   var ORIGIN = "Oostrozebeke";
+  var SHOW_TIPS = 15; // zichtbaar per weekend; de rest van de editie is reserve die aanvult na filteren of "al gedaan"
   var LAT = 50.92, LON = 3.34;
 
   // ---------- storage (safe) ----------
@@ -639,8 +640,16 @@ nav.bottom a[aria-current="page"] { color: var(--accent); }
   function renderList() {
     var wk = state.edition.weekends[state.weekend];
     var items = filtered(wk);
-    document.getElementById("count").textContent = items.length + " van " + wk.tips.length + " tips · " + wk.longLabel;
-    document.getElementById("list").innerHTML = items.length ? items.map(function (t) { return cardHTML(t, wk); }).join("") :
+    var shown = items.slice(0, SHOW_TIPS);
+    var filtersOn = state.day !== "alle" || state.maxMin < 60 || state.setting !== "alle" || state.cat !== "alle" || state.allFit;
+    document.getElementById("count").textContent = (shown.length === SHOW_TIPS ? SHOW_TIPS + " tips" : shown.length + (shown.length === 1 ? " tip" : " tips")) + " · " + wk.longLabel;
+    var note = "";
+    if (shown.length && shown.length < SHOW_TIPS) {
+      note = '<div class="empty"><strong>Meer tips zijn er niet</strong>' +
+        (filtersOn ? "Er passen maar " + shown.length + " tips bij deze filters. Zet een filter uit om de lijst tot " + SHOW_TIPS + " aan te vullen."
+                   : "De andere tips van dit weekend heb je al gedaan. Volgende maandag komen er nieuwe.") + '</div>';
+    }
+    document.getElementById("list").innerHTML = shown.length ? shown.map(function (t) { return cardHTML(t, wk); }).join("") + note :
       '<div class="empty"><strong>Geen tips met deze filters</strong>Zet een filter uit of kies een grotere rijafstand.</div>';
   }
 
