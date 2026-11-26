@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#8f3d10">
+<meta name="description" content="Elke maandag leuke weekenduitstapjes voor het gezin, binnen 1u rijden van Oostrozebeke.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Uitstapjes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+<title>Uitstapjes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: mobile app shell. Sticky seasonal header, weekend switch, weather strip, filter chips, card list, fixed bottom nav. */
+:root {
+  --font-display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius: 14px;
+  --nav-h: 64px;
+  /* Herfst (default) light */
+  --bg: #fdf9f5;
+  --surface: #ffffff;
+  --fg: #2b211a;
+  --muted: #76675b;
+  --line: #ecdfd3;
+  --accent: #c2570c;
+  --accent-ink: #ffffff;
+  --accent-soft: #fbe6d4;
+  --second: #4d6b3c;
+  --second-soft: #e3ecd9;
+  --hero-a: #c2570c;
+  --hero-b: #8f3d10;
+  --hero-ink: #fff7ef;
+  --warn: #8a5a00;
+  --warn-soft: #fff1cc;
+  --good: #2f7a3e;
+  --p1: #e98b2a; --p2: #b8471b; --p3: #d9a441;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b1511; --surface: #251d18; --fg: #f3e9df; --muted: #b6a596; --line: #3a2e26;
+  --accent: #f08a3e; --accent-ink: #1b1511; --accent-soft: #3d2516; --second: #9cc285; --second-soft: #263222;
+  --hero-a: #6e2f0c; --hero-b: #3c1a08; --hero-ink: #fff1e4; --warn: #ffd27a; --warn-soft: #3a2e10; --good: #7fd18f;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #1b1511; --surface: #251d18; --fg: #f3e9df; --muted: #b6a596; --line: #3a2e26;
+  --accent: #f08a3e; --accent-ink: #1b1511; --accent-soft: #3d2516; --second: #9cc285; --second-soft: #263222;
+  --hero-a: #6e2f0c; --hero-b: #3c1a08; --hero-ink: #fff1e4; --warn: #ffd27a; --warn-soft: #3a2e10; --good: #7fd18f;
+  color-scheme: dark; }
+
+/* Winter */
+:root[data-season="winter"] {
+  --bg: #f4f8fc; --surface: #ffffff; --fg: #15233a; --muted: #5d6b80; --line: #dbe5f0;
+  --accent: #2456a6; --accent-ink: #ffffff; --accent-soft: #dde8f8; --second: #b4233c; --second-soft: #f8dfe4;
+  --hero-a: #2456a6; --hero-b: #13305f; --hero-ink: #f2f7ff; --p1: #ffffff; --p2: #cfe0f7; --p3: #a9c4ea; }
+@media (prefers-color-scheme: dark) { :root[data-season="winter"]:not([data-theme="light"]) {
+  --bg: #0f1622; --surface: #172131; --fg: #e6eef9; --muted: #9aabc2; --line: #26344a;
+  --accent: #7fb0ff; --accent-ink: #0f1622; --accent-soft: #1c2d48; --second: #ff8fa3; --second-soft: #3a1c25;
+  --hero-a: #183a70; --hero-b: #0b1a33; --hero-ink: #eef4ff; } }
+:root[data-season="winter"][data-theme="dark"] {
+  --bg: #0f1622; --surface: #172131; --fg: #e6eef9; --muted: #9aabc2; --line: #26344a;
+  --accent: #7fb0ff; --accent-ink: #0f1622; --accent-soft: #1c2d48; --second: #ff8fa3; --second-soft: #3a1c25;
+  --hero-a: #183a70; --hero-b: #0b1a33; --hero-ink: #eef4ff; }
+
+/* Lente */
+:root[data-season="lente"] {
+  --bg: #f7fbf4; --surface: #ffffff; --fg: #1f2a1c; --muted: #66735f; --line: #dfe9d7;
+  --accent: #3b8a36; --accent-ink: #ffffff; --accent-soft: #e0f0da; --second: #c4457e; --second-soft: #f9e0eb;
+  --hero-a: #3b8a36; --hero-b: #245b22; --hero-ink: #f5fff2; --p1: #ffd1e3; --p2: #ffffff; --p3: #f59ac0; }
+@media (prefers-color-scheme: dark) { :root[data-season="lente"]:not([data-theme="light"]) {
+  --bg: #121a11; --surface: #1a2519; --fg: #e8f3e3; --muted: #a3b59b; --line: #2a3a28;
+  --accent: #86d17c; --accent-ink: #121a11; --accent-soft: #213420; --second: #ff9cc7; --second-soft: #3a1d2b;
+  --hero-a: #24561f; --hero-b: #132f11; --hero-ink: #f1ffee; } }
+:root[data-season="lente"][data-theme="dark"] {
+  --bg: #121a11; --surface: #1a2519; --fg: #e8f3e3; --muted: #a3b59b; --line: #2a3a28;
+  --accent: #86d17c; --accent-ink: #121a11; --accent-soft: #213420; --second: #ff9cc7; --second-soft: #3a1d2b;
+  --hero-a: #24561f; --hero-b: #132f11; --hero-ink: #f1ffee; }
+
+/* Zomer */
+:root[data-season="zomer"] {
+  --bg: #fffcf2; --surface: #ffffff; --fg: #1d2a2c; --muted: #64716f; --line: #efe7cf;
+  --accent: #0b7a84; --accent-ink: #ffffff; --accent-soft: #d6eff1; --second: #b97c00; --second-soft: #fbefcf;
+  --hero-a: #0b8a94; --hero-b: #075a62; --hero-ink: #f2feff; --p1: #ffe27a; --p2: #ffffff; --p3: #ffc94a; }
+@media (prefers-color-scheme: dark) { :root[data-season="zomer"]:not([data-theme="light"]) {
+  --bg: #0f1a1b; --surface: #162426; --fg: #e5f4f4; --muted: #9db6b6; --line: #263a3c;
+  --accent: #5fd3dc; --accent-ink: #0f1a1b; --accent-soft: #173537; --second: #ffcf5c; --second-soft: #392f12;
+  --hero-a: #0a5960; --hero-b: #063236; --hero-ink: #effeff; } }
+:root[data-season="zomer"][data-theme="dark"] {
+  --bg: #0f1a1b; --surface: #162426; --fg: #e5f4f4; --muted: #9db6b6; --line: #263a3c;
+  --accent: #5fd3dc; --accent-ink: #0f1a1b; --accent-soft: #173537; --second: #ffcf5c; --second-soft: #392f12;
+  --hero-a: #0a5960; --hero-b: #063236; --hero-ink: #effeff; }
+
+* { box-sizing: border-box; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.45; -webkit-tap-highlight-color: transparent; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--hero-b); }
+a { color: var(--accent); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.wrap { max-width: 720px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Header */
+.hero { position: relative; overflow: hidden; color: var(--hero-ink); background: linear-gradient(160deg, var(--hero-a), var(--hero-b)); margin-top: calc(-1 * env(safe-area-inset-top, 0px)); padding-top: env(safe-area-inset-top, 0px); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .wrap { position: relative; padding-block: 18px 16px; display: grid; gap: 4px; }
+.hero-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand { font-family: var(--font-display); font-weight: 600; font-size: 30px; letter-spacing: .2px; margin: 0; line-height: 1.1; }
+.season-pill { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgb(255 255 255 / .18); white-space: nowrap; }
+.hero p { margin: 0; opacity: .9; font-size: 14px; }
+
+main { padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
+.view { display: grid; gap: 16px; padding-block: 16px 0; }
+
+/* Weekend switch */
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; }
+.seg button { border: 0; background: transparent; padding: 10px 8px; border-radius: 999px; font-weight: 600; cursor: pointer; font-family: var(--font-display); font-size: 16px; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.seg small { display: block; font-family: var(--font-body); font-weight: 500; font-size: 11px; opacity: .8; }
+
+/* Weather */
+.weather { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.wday { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: center; }
+.wday svg { grid-row: span 3; width: 40px; height: 40px; color: var(--accent); }
+.wday .d { font-weight: 700; font-size: 13px; text-transform: capitalize; }
+.wday .t { font-family: var(--font-display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.wday .t span { color: var(--muted); font-size: 15px; }
+.wday .r { font-size: 12px; color: var(--muted); }
+.wday .hint { grid-column: 1 / -1; margin-top: 6px; font-size: 12px; font-weight: 600; color: var(--second); }
+
+/* Filters */
+.filters { display: grid; gap: 8px; }
+.chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; border: 1px solid var(--line); background: var(--surface); padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip-label { flex: none; align-self: center; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-right: 2px; }
+.count { font-size: 13px; color: var(--muted); }
+
+/* Cards */
+.list { display: grid; gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: grid; gap: 10px; }
+.card.done { opacity: .55; }
+.card.has-photo { overflow: hidden; }
+.photo { margin: -14px -14px 0; position: relative; background: var(--accent-soft); }
+.photo img { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; padding: 18px 10px 6px; font-size: 11px; line-height: 1.3; color: #fff; background: linear-gradient(transparent, rgb(0 0 0 / .62)); }
+.photo figcaption span { font-weight: 600; min-width: 0; }
+.photo figcaption a { color: #fff; opacity: .85; text-decoration: none; white-space: nowrap; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tag { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--fg); }
+.tag.cat-evenement { background: var(--accent-soft); }
+.tag.cat-attractie { background: var(--second-soft); }
+.tag.cat-natuur { background: color-mix(in srgb, var(--good) 18%, var(--surface)); }
+.tag.cat-cultuur { background: color-mix(in srgb, var(--muted) 20%, var(--surface)); }
+.tag.top { background: var(--accent); color: var(--accent-ink); }
+.tag.plopsa { background: var(--second); color: var(--surface); }
+.tag.day { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.tag.rainok { background: transparent; border: 1px dashed var(--second); color: var(--second); }
+.card h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.2; text-wrap: balance; }
+.where { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; color: var(--muted); }
+.where b { color: var(--fg); font-variant-numeric: tabular-nums; }
+.where svg { width: 15px; height: 15px; vertical-align: -3px; margin-right: 3px; }
+.why { margin: 0; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; font-size: 13px; }
+.facts div { min-width: 0; }
+.facts dt { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; }
+.ages { display: flex; gap: 6px; flex-wrap: wrap; }
+.age { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); }
+.age.yes { background: var(--second-soft); border-color: transparent; }
+.age.no { color: var(--muted); }
+.age.no b { text-decoration: line-through; font-weight: 700; }
+.age small { font-weight: 500; }
+.forwho { font-size: 14px; color: var(--muted); margin-top: -6px; }
+.forwho b { color: var(--fg); }
+.onboard { display: grid; gap: 4px; text-decoration: none; color: var(--fg); background: var(--second-soft); border-radius: var(--radius); padding: 14px; }
+.onboard strong { font-family: var(--font-display); font-weight: 600; font-size: 17px; }
+.onboard span { font-size: 13px; color: var(--muted); }
+.onboard em { font-style: normal; font-weight: 700; color: var(--accent); font-size: 13px; }
+.kids { display: grid; gap: 10px; }
+.kid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 10px; align-items: end; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.kid label { display: grid; gap: 4px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); min-width: 0; }
+.kid input { font: inherit; font-size: 15px; letter-spacing: 0; text-transform: none; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; width: 100%; min-width: 0; }
+.kid-foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.kid-age { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.kid-err { grid-column: 1 / -1; margin: 0; font-size: 13px; color: var(--warn); background: var(--warn-soft); padding: 6px 10px; border-radius: 8px; }
+details summary { cursor: pointer; font-weight: 600; font-size: 13px; color: var(--accent); list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: "+ "; }
+details[open] summary::before { content: "– "; }
+details .facts { margin-top: 10px; }
+.check { font-size: 13px; background: var(--warn-soft); color: var(--warn); padding: 8px 10px; border-radius: 10px; }
+.actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 8px 12px; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none; cursor: pointer; }
+.btn svg { width: 16px; height: 16px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.icon { padding: 8px 10px; }
+.meta .btn.icon { padding: 6px 8px; }
+.btn[aria-pressed="true"].fav { background: var(--second); color: var(--surface); border-color: var(--second); }
+.btn[aria-pressed="true"].did { background: var(--good); color: var(--surface); border-color: var(--good); }
+.spacer { flex: 1; }
+
+.empty { text-align: center; color: var(--muted); padding: 32px 12px; background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); }
+.empty strong { display: block; color: var(--fg); font-family: var(--font-display); font-size: 18px; margin-bottom: 4px; }
+h2 { font-family: var(--font-display); font-weight: 600; font-size: 22px; margin: 0; }
+.prose { display: grid; gap: 10px; max-width: 65ch; }
+.prose p, .prose ol, .prose ul { margin: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: grid; gap: 8px; }
+.panel h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 17px; }
+.arch { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-align: left; width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); padding: 14px; cursor: pointer; }
+.arch b { font-family: var(--font-display); font-weight: 600; font-size: 16px; display: block; }
+.arch span { font-size: 13px; color: var(--muted); }
+.arch[aria-current="true"] { border-color: var(--accent); }
+.banner { font-size: 13px; padding: 10px 12px; border-radius: 10px; background: var(--accent-soft); }
+
+/* Bottom nav */
+nav.bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
+nav.bottom .in { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); height: var(--nav-h); }
+nav.bottom a { display: grid; place-items: center; align-content: center; gap: 2px; text-decoration: none; color: var(--muted); font-size: 11px; font-weight: 600; }
+nav.bottom a svg { width: 22px; height: 22px; }
+nav.bottom a[aria-current="page"] { color: var(--accent); }
+.badge { font-size: 10px; background: var(--second); color: var(--surface); border-radius: 999px; padding: 0 5px; margin-left: 2px; }
+
+@media (min-width: 560px) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<header class="hero">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-top">
+      <h1 class="brand">Uitstapjes</h1>
+      <span class="season-pill" id="seasonPill">Herfst</span>
+    </div>
+    <p id="heroSub">Weekendtips vanaf Oostrozebeke · max. 1u rijden</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="view" id="view-tips" aria-label="Tips">
+    <div class="banner" id="editionBanner" hidden></div>
+    <a class="onboard" id="onboard" href="#gezin" hidden><strong>Vul je gezin in</strong><span>Geef de geboortedata van je kinderen. Dan toont elke tip voor wie hij past, en groeien de tips mee met hun leeftijd.</span><em>Naar Gezin →</em></a>
+    <div class="seg" role="group" aria-label="Kies weekend" id="weekendSeg"></div>
+    <div class="forwho" id="forWho" hidden></div>
+    <div class="weather" id="weather"></div>
+    <div class="filters">
+      <div class="chips" id="chipsDay" role="group" aria-label="Dag en afstand"></div>
+      <div class="chips" id="chipsKind" role="group" aria-label="Soort"></div>
+    </div>
+    <div class="count" id="count" aria-live="polite"></div>
+    <div class="list" id="list"></div>
+  </section>
+
+  <section class="view" id="view-favorieten" aria-label="Favorieten" hidden>
+    <h2>Favorieten</h2>
+    <p class="count">Tips die je met het hartje bewaarde. Ze staan alleen op deze gsm.</p>
+    <div class="list" id="favList"></div>
+  </section>
+
+  <section class="view" id="view-archief" aria-label="Archief" hidden>
+    <h2>Archief</h2>
+    <p class="count">Elke maandag komt er een nieuw overzicht bij. Tik op een editie om ze te bekijken.</p>
+    <div class="list" id="archList"></div>
+  </section>
+
+  <section class="view" id="view-gezin" aria-label="Gezin" hidden>
+    <h2>Ons gezin</h2>
+    <div class="panel">
+      <p class="count">Geef de voornaam en geboortedatum van je kinderen. De app rekent zelf uit hoe oud ze zijn op elk weekend, zodat de tips meegroeien. Alles blijft alleen op deze gsm.</p>
+      <div class="kids" id="kidList"></div>
+      <div class="actions"><button class="btn" id="addKid" type="button">+ Kind toevoegen</button></div>
+    </div>
+    <h2>Over Uitstapjes</h2>
+    <div class="prose">
+      <p>Elke maandagochtend om 7u staat hier een nieuwe selectie klaar voor de komende twee weekends: evenementen, attracties, natuur en cultuur binnen 1u rijden van Oostrozebeke, gekozen voor jonge kinderen.</p>
+      <p>De tips komen uit UiTinVlaanderen en een AI-zoektocht op het web. Data en uren kunnen wijzigen, dus volg de gele opmerking bij een tip en bekijk de website voor je vertrekt.</p>
+    </div>
+    <div class="panel">
+      <h3>Op je gsm zetten</h3>
+      <div class="prose">
+        <p><b>Android (Chrome):</b> open de link, tik op ⋮ rechtsboven en kies <i>Toevoegen aan startscherm</i>.</p>
+        <p><b>iPhone (Safari):</b> open de link, tik op het deel-icoon onderaan en kies <i>Zet op beginscherm</i>.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Seizoensstijl</h3>
+      <p class="count">De kleuren volgen automatisch het seizoen. Hier kan je de andere seizoenen eens bekijken.</p>
+      <div class="chips" id="chipsSeason" role="group" aria-label="Seizoen"></div>
+    </div>
+    <div class="panel">
+      <h3>Je gegevens</h3>
+      <p class="count">Favorieten en 'al gedaan' worden alleen op dit toestel bewaard.</p>
+      <div class="actions"><button class="btn" id="resetDone" type="button">'Al gedaan' wissen</button></div>
+    </div>
+  </section>
+</main>
+
+<nav class="bottom" aria-label="Hoofdmenu">
+  <div class="in">
+    <a href="#tips" data-view="tips"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Weekends</a>
+    <a href="#favorieten" data-view="favorieten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><span>Favorieten<span class="badge" id="favBadge" hidden></span></span></a>
+    <a href="#archief" data-view="archief"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1.5"/><path d="M5 9v10a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19V9M10 13h4"/></svg>Archief</a>
+    <a href="#gezin" data-view="gezin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M2.5 20v-1.5A4.5 4.5 0 0 1 7 14h2a4.5 4.5 0 0 1 4.5 4.5V20M14.5 14.5a3.5 3.5 0 0 1 2-.5 3.8 3.8 0 0 1 4 3.8V20"/></svg>Gezin</a>
+  </div>
+</nav>
+
+<script>
+(function () {
+  "use strict";
+  var ORIGIN = "Oostrozebeke";
+  var LAT = 50.92, LON = 3.34;
+
+  // ---------- storage (safe) ----------
+  var mem = {};
+  function load(key, fallback) {
+    try { var v = localStorage.getItem("uitstapjes:" + key); return v ? JSON.parse(v) : fallback; }
+    catch (e) { return key in mem ? mem[key] : fallback; }
+  }
+  function save(key, val) {
+    mem[key] = val;
+    try { localStorage.setItem("uitstapjes:" + key, JSON.stringify(val)); } catch (e) {}
+  }
+
+  var state = {
+    index: null, edition: null, editionId: null, weekend: 0,
+    day: "alle", maxMin: 60, setting: "alle", cat: "alle",
+    hideDone: true, allFit: false,
+    kids: load("kids", []),
+    favs: load("favs", {}),
+    done: load("done", {}),
+    seasonOverride: load("season", "auto")
+  };
+
+  // ---------- season ----------
+  var SEASONS = { lente: "Lente", zomer: "Zomer", herfst: "Herfst", winter: "Winter" };
+  function seasonFor(d) {
+    var m = d.getMonth();
+    if (m >= 2 && m <= 4) return "lente";
+    if (m >= 5 && m <= 7) return "zomer";
+    if (m >= 8 && m <= 10) return "herfst";
+    return "winter";
+  }
+  function applySeason() {
+    var s = state.seasonOverride === "auto" ? seasonFor(new Date()) : state.seasonOverride;
+    if (s === "herfst") document.documentElement.removeAttribute("data-season");
+    else document.documentElement.setAttribute("data-season", s);
+    document.getElementById("seasonPill").textContent = SEASONS[s];
+    sky.setSeason(s);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", getComputedStyle(document.documentElement).getPropertyValue("--hero-b").trim());
+  }
+
+  // ---------- header particles ----------
+  var sky = (function () {
+    var c = document.getElementById("sky"), ctx = c.getContext("2d"), parts = [], season = "herfst", raf = null;
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function color(i) { var cs = getComputedStyle(document.documentElement); return cs.getPropertyValue(["--p1", "--p2", "--p3"][i % 3]).trim() || "#fff"; }
+    function size() { var r = c.getBoundingClientRect(), dpr = window.devicePixelRatio || 1; c.width = r.width * dpr; c.height = r.height * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return r; }
+    function seed() {
+      var r = size(); parts = [];
+      var n = Math.round(r.width / 22);
+      for (var i = 0; i < n; i++) parts.push({ x: Math.random() * r.width, y: Math.random() * r.height, s: 3 + Math.random() * 6, v: .2 + Math.random() * .5, a: Math.random() * 6.28, w: .01 + Math.random() * .02, col: color(i) });
+    }
+    function drawOne(p) {
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.fillStyle = p.col; ctx.strokeStyle = p.col; ctx.globalAlpha = .55;
+      if (season === "winter") { ctx.lineWidth = 1.2; for (var k = 0; k < 3; k++) { ctx.rotate(Math.PI / 3); ctx.beginPath(); ctx.moveTo(-p.s, 0); ctx.lineTo(p.s, 0); ctx.stroke(); } }
+      else if (season === "herfst") { ctx.beginPath(); ctx.ellipse(0, 0, p.s * 1.3, p.s * .6, 0, 0, 6.28); ctx.fill(); }
+      else if (season === "lente") { for (var j = 0; j < 5; j++) { ctx.rotate(6.28 / 5); ctx.beginPath(); ctx.arc(p.s * .6, 0, p.s * .45, 0, 6.28); ctx.fill(); } }
+      else { ctx.beginPath(); ctx.arc(0, 0, p.s * .45, 0, 6.28); ctx.fill(); ctx.globalAlpha = .25; ctx.beginPath(); ctx.arc(0, 0, p.s * 1.2, 0, 6.28); ctx.fill(); }
+      ctx.restore();
+    }
+    function frame() {
+      var r = c.getBoundingClientRect(); ctx.clearRect(0, 0, r.width, r.height);
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i]; drawOne(p);
+        if (!reduce) {
+          if (season === "zomer") { p.y -= p.v * .3; p.x += Math.sin(p.a) * .2; } else { p.y += p.v; p.x += Math.sin(p.a) * .4; }
+          p.a += p.w;
+          if (p.y > r.height + 10) p.y = -10; if (p.y < -10) p.y = r.height + 10;
+          if (p.x > r.width + 10) p.x = -10; if (p.x < -10) p.x = r.width + 10;
+        }
+      }
+      if (!reduce) raf = requestAnimationFrame(frame);
+    }
+    window.addEventListener("resize", function () { seed(); if (reduce) frame(); });
+    return { setSeason: function (s) { season = s; seed(); if (raf) cancelAnimationFrame(raf); frame(); } };
+  })();
+
+  // ---------- helpers ----------
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  var DAYNAMES = { za: "Zaterdag", zo: "Zondag" };
+  var CATS = { evenement: "Evenement", attractie: "Attractie", natuur: "Natuur", cultuur: "Cultuur" };
+  var SETTING = { binnen: "Binnen", buiten: "Buiten", beide: "Binnen & buiten" };
+  function fmtDate(iso) { var d = new Date(iso + "T12:00:00"); return d.toLocaleDateString("nl-BE", { weekday: "short", day: "numeric", month: "short" }); }
+
+  function wInfo(code) {
+    if (code == null) return { k: "cloud", t: "Onbekend" };
+    if (code <= 1) return { k: "sun", t: "Zonnig" };
+    if (code <= 3) return { k: "cloud", t: "Bewolkt" };
+    if (code <= 48) return { k: "fog", t: "Mist" };
+    if (code <= 57) return { k: "rain", t: "Motregen" };
+    if (code <= 67) return { k: "rain", t: "Regen" };
+    if (code <= 77) return { k: "snow", t: "Sneeuw" };
+    if (code <= 82) return { k: "rain", t: "Buien" };
+    if (code <= 86) return { k: "snow", t: "Sneeuwbuien" };
+    return { k: "storm", t: "Onweer" };
+  }
+  var WICON = {
+    sun: '<circle cx="20" cy="20" r="7" fill="currentColor"/><g stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 4v4M20 32v4M4 20h4M32 20h4M8.7 8.7l2.8 2.8M28.5 28.5l2.8 2.8M8.7 31.3l2.8-2.8M28.5 11.5l2.8-2.8"/></g>',
+    cloud: '<path d="M12 29h17a6 6 0 0 0 0-12 9 9 0 0 0-17 2 5 5 0 0 0 0 10z" fill="currentColor" opacity=".85"/>',
+    fog: '<path d="M12 21h17a6 6 0 0 0 0-12 9 9 0 0 0-17 2 5 5 0 0 0 0 10z" fill="currentColor" opacity=".55"/><g stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 27h26M10 33h20"/></g>',
+    rain: '<path d="M12 23h17a6 6 0 0 0 0-12 9 9 0 0 0-17 2 5 5 0 0 0 0 10z" fill="currentColor" opacity=".85"/><g stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 28l-2 5M21 28l-2 5M28 28l-2 5"/></g>',
+    snow: '<path d="M12 23h17a6 6 0 0 0 0-12 9 9 0 0 0-17 2 5 5 0 0 0 0 10z" fill="currentColor" opacity=".85"/><g fill="currentColor"><circle cx="13" cy="30" r="2"/><circle cx="20" cy="33" r="2"/><circle cx="27" cy="30" r="2"/></g>',
+    storm: '<path d="M12 23h17a6 6 0 0 0 0-12 9 9 0 0 0-17 2 5 5 0 0 0 0 10z" fill="currentColor" opacity=".85"/><path d="M21 24l-4 7h5l-3 6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>'
+  };
+  var I = {
+    car: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3zM7 19v2M17 19v2"/><circle cx="7.5" cy="13.5" r="1" fill="currentColor"/><circle cx="16.5" cy="13.5" r="1" fill="currentColor"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+    route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg>',
+    link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
+    share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>',
+    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
+  };
+
+  // ---------- ages ----------
+  function todayISO() { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  function ageOn(birth, iso) {
+    var b = new Date(birth + "T12:00:00"), d = new Date(iso + "T12:00:00");
+    if (isNaN(b) || isNaN(d)) return null;
+    var a = d.getFullYear() - b.getFullYear();
+    if (d.getMonth() < b.getMonth() || (d.getMonth() === b.getMonth() && d.getDate() < b.getDate())) a--;
+    return a;
+  }
+  function kidError(k) {
+    if (!k.birth) return "";
+    var a = ageOn(k.birth, todayISO());
+    if (a == null) return "Deze datum klopt niet.";
+    if (k.birth > todayISO()) return "Deze datum ligt in de toekomst.";
+    if (a > 18) return "Dit kind is ouder dan 18. Kies een recentere datum.";
+    return "";
+  }
+  function validKids() { return state.kids.filter(function (k) { return k.birth && !kidError(k); }); }
+  function kidName(k, i) { return (k.name || "").trim() || "Kind " + (i + 1); }
+  function refDate(wk) { return wk && wk.days && wk.days[0] ? wk.days[0].date : todayISO(); }
+  function range(t) {
+    if (t.ageMin != null || t.ageMax !== undefined) return { min: t.ageMin || 0, max: t.ageMax == null ? null : t.ageMax };
+    if (t.ages) { // oudere edities: {"3": true, "6": false}
+      var yes = Object.keys(t.ages).filter(function (k) { return t.ages[k]; }).map(Number).sort(function (a, b) { return a - b; });
+      var all = Object.keys(t.ages).map(Number).sort(function (a, b) { return a - b; });
+      if (!yes.length) return { min: 0, max: null };
+      return { min: yes[0] === all[0] ? 0 : yes[0], max: yes[yes.length - 1] === all[all.length - 1] ? null : yes[yes.length - 1] };
+    }
+    return { min: 0, max: null };
+  }
+  function rangeTxt(r) {
+    if (!r.min && r.max == null) return "Alle leeftijden";
+    if (r.max == null) return "Vanaf " + r.min + " jaar";
+    if (!r.min) return "Tot " + r.max + " jaar";
+    return r.min + "–" + r.max + " jaar";
+  }
+  function fits(r, age) { return age >= r.min && (r.max == null || age <= r.max); }
+  function fitCount(t, wk) {
+    var r = range(t), d = refDate(wk);
+    return validKids().filter(function (k) { return fits(r, ageOn(k.birth, d)); }).length;
+  }
+  function agesHTML(t, wk) {
+    var r = range(t), kids = validKids(), d = refDate(wk);
+    if (!kids.length) return '<div class="ages"><span class="age yes">' + esc(rangeTxt(r)) + '</span></div>';
+    return '<div class="ages">' + kids.map(function (k, i) {
+      var a = ageOn(k.birth, d), ok = fits(r, a);
+      var why = ok ? "" : ' <small>' + (a < r.min ? "vanaf " + r.min : "tot " + r.max) + '</small>';
+      return '<span class="age ' + (ok ? "yes" : "no") + '"><b>' + esc(kidName(k, state.kids.indexOf(k))) + ' · ' + a + '</b>' + why + '</span>';
+    }).join("") + '</div>';
+  }
+  function joinNames(parts) { return parts.length < 2 ? parts.join("") : parts.slice(0, -1).join(", ") + " en " + parts[parts.length - 1]; }
+
+  function dayWeather(wk, d) { for (var i = 0; i < wk.days.length; i++) if (wk.days[i].day === d) return wk.days[i].weather; return null; }
+
+  // ---------- rendering ----------
+  function renderWeekendSeg() {
+    var el = document.getElementById("weekendSeg");
+    el.innerHTML = state.edition.weekends.map(function (w, i) {
+      return '<button type="button" aria-pressed="' + (i === state.weekend) + '" data-wk="' + i + '">' + esc(w.label) + '<small>' + (i === 0 ? "Komend weekend" : "Weekend erna") + '</small></button>';
+    }).join("");
+  }
+
+  function renderWeather() {
+    var wk = state.edition.weekends[state.weekend];
+    document.getElementById("weather").innerHTML = wk.days.map(function (d) {
+      var w = d.weather || {}, info = wInfo(w.code), hint = "";
+      if (w.rain >= 45) hint = "Kans op buien: kies iets binnen";
+      else if (w.tmax != null && w.tmax <= 3) hint = "Koud: muts en handschoenen mee";
+      else if (w.rain != null && w.rain < 20 && w.tmax >= 8) hint = "Mooi om buiten te spelen";
+      return '<div class="wday"><svg viewBox="0 0 40 40" aria-hidden="true">' + WICON[info.k] + '</svg>' +
+        '<div class="d">' + esc(fmtDate(d.date)) + '</div>' +
+        '<div class="t">' + (w.tmax != null ? Math.round(w.tmax) + "°" : "–") + ' <span>' + (w.tmin != null ? Math.round(w.tmin) + "°" : "") + '</span></div>' +
+        '<div class="r">' + esc(info.t) + (w.rain != null ? " · " + w.rain + "% regen" : "") + '</div>' +
+        (hint ? '<div class="hint">' + esc(hint) + '</div>' : "") + '</div>';
+    }).join("");
+  }
+
+  function chip(group, val, label, pressed) { return '<button type="button" class="chip" data-g="' + group + '" data-v="' + esc(val) + '" aria-pressed="' + pressed + '">' + esc(label) + '</button>'; }
+
+  function renderChips() {
+    var a = '<span class="chip-label">Dag</span>' +
+      chip("day", "alle", "Za + Zo", state.day === "alle") + chip("day", "za", "Zaterdag", state.day === "za") + chip("day", "zo", "Zondag", state.day === "zo") +
+      '<span class="chip-label">Rijden</span>' +
+      chip("max", "20", "≤ 20 min", state.maxMin === 20) + chip("max", "40", "≤ 40 min", state.maxMin === 40) + chip("max", "60", "≤ 1u", state.maxMin === 60);
+    var b = '<span class="chip-label">Soort</span>' +
+      chip("set", "binnen", "Binnen", state.setting === "binnen") + chip("set", "buiten", "Buiten", state.setting === "buiten") +
+      Object.keys(CATS).map(function (k) { return chip("cat", k, CATS[k], state.cat === k); }).join("") +
+      chip("done", "1", "Verberg al gedaan", state.hideDone) +
+      (validKids().length ? chip("fit", "1", validKids().length > 1 ? "Voor iedereen" : "Past voor " + kidName(validKids()[0], state.kids.indexOf(validKids()[0])), state.allFit) : "");
+    document.getElementById("chipsDay").innerHTML = a;
+    document.getElementById("chipsKind").innerHTML = b;
+  }
+
+  function mapsUrl(t) { return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(ORIGIN) + "&destination=" + encodeURIComponent(t.destination || t.place) + "&travelmode=driving"; }
+  function wazeUrl(t) { return "https://waze.com/ul?q=" + encodeURIComponent(t.destination || t.place) + "&navigate=yes"; }
+  function waUrl(t, wkLabel) {
+    var txt = "Uitstapje? " + t.title + " (" + t.place + ", ca. " + t.minutes + " min rijden)" + (wkLabel ? " – " + wkLabel : "") + ". " + (t.price || "") + (t.url ? " " + t.url : "");
+    return "https://wa.me/?text=" + encodeURIComponent(txt);
+  }
+
+  function cardHTML(t, wk) {
+    var isFav = !!state.favs[t.id], isDone = !!state.done[t.id];
+    var rainy = wk && t.days.some(function (d) { var w = dayWeather(wk, d); return w && w.rain >= 45; });
+    var tags = '<span class="tag cat-' + esc(t.category) + '">' + esc(CATS[t.category] || t.category) + '</span>' +
+      (t.top ? '<span class="tag top">Topper</span>' : "") +
+      (t.plopsa ? '<span class="tag plopsa">Abonnement</span>' : "") +
+      (rainy && (t.setting === "binnen" || t.setting === "beide") ? '<span class="tag rainok">Goed bij regen</span>' : "") +
+      '<span class="spacer"></span>' +
+      '<button type="button" class="btn icon fav" data-act="fav" aria-pressed="' + isFav + '" aria-label="Favoriet" title="Favoriet">' + I.heart + '</button>' +
+      '<button type="button" class="btn icon did" data-act="done" aria-pressed="' + isDone + '" aria-label="Al gedaan" title="Al gedaan">' + I.check + '</button>';
+    var dayTxt = t.days.length === 2 ? "Za + Zo" : (t.days[0] === "za" ? "Alleen zaterdag" : "Alleen zondag");
+    var ages = agesHTML(t, wk);
+    var facts = '<dl class="facts">' +
+      '<div><dt>Uren</dt><dd>' + esc(t.hours || "–") + '</dd></div>' +
+      '<div><dt>Reserveren</dt><dd>' + esc(t.booking || "–") + '</dd></div>' +
+      '<div><dt>Buggy</dt><dd>' + (t.buggy === true ? "Ja" : t.buggy === false ? "Liever niet" : "Onbekend") + '</dd></div>' +
+      '<div><dt>Parking</dt><dd>' + esc(t.parking || "–") + '</dd></div>' +
+      '<div><dt>Leeftijd</dt><dd>' + esc(rangeTxt(range(t))) + (t.ageNote ? ". " + esc(t.ageNote) : "") + '</dd></div>' +
+      '</dl>';
+    var ph = t.photo && t.photo.src ? '<figure class="photo">' +
+        '<img src="' + esc(t.photo.src) + '" alt="' + esc(t.photo.caption || t.title) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.closest(\'figure\').remove()">' +
+        '<figcaption><span>' + esc(t.photo.caption || "") + '</span><a href="' + esc(t.photo.page) + '" target="_blank" rel="noopener">Foto: ' + esc(t.photo.credit) + ' · ' + esc(t.photo.license) + '</a></figcaption>' +
+      '</figure>' : "";
+    return '<article class="card' + (isDone ? " done" : "") + (ph ? " has-photo" : "") + '" data-id="' + esc(t.id) + '">' + ph +
+      '<div class="meta">' + tags + '</div>' +
+      '<h3>' + esc(t.title) + '</h3>' +
+      '<div class="where"><span>' + I.pin + esc(t.place) + '</span><span>' + I.car + '<b>' + t.minutes + ' min</b></span><span>' + esc(SETTING[t.setting] || "") + '</span><span>' + dayTxt + '</span></div>' +
+      '<p class="why">' + esc(t.why) + '</p>' +
+      '<dl class="facts"><div><dt>Prijs</dt><dd>' + esc(t.price || "–") + '</dd></div><div><dt>Voor wie</dt><dd>' + ages + '</dd></div></dl>' +
+      '<details><summary>Praktisch</summary>' + facts + '</details>' +
+      (t.check ? '<div class="check">' + esc(t.check) + '</div>' : "") +
+      '<div class="actions">' +
+        '<a class="btn primary" href="' + mapsUrl(t) + '" target="_blank" rel="noopener">' + I.route + 'Route</a>' +
+        '<a class="btn" href="' + wazeUrl(t) + '" target="_blank" rel="noopener">Waze</a>' +
+        (t.url ? '<a class="btn" href="' + esc(t.url) + '" target="_blank" rel="noopener">' + I.link + 'Website</a>' : "") +
+        '<a class="btn icon" href="' + waUrl(t, wk && wk.longLabel) + '" target="_blank" rel="noopener" aria-label="Delen via WhatsApp" title="Delen via WhatsApp">' + I.share + '</a>' +
+      '</div></article>';
+  }
+
+  function filtered(wk) {
+    return wk.tips.filter(function (t) {
+      if (state.day !== "alle" && t.days.indexOf(state.day) < 0) return false;
+      if (t.minutes > state.maxMin) return false;
+      if (state.setting !== "alle" && t.setting !== state.setting && t.setting !== "beide") return false;
+      if (state.cat !== "alle" && t.category !== state.cat) return false;
+      if (state.hideDone && state.done[t.id]) return false;
+      if (state.allFit && validKids().length && fitCount(t, wk) < validKids().length) return false;
+      return true;
+    }).sort(function (a, b) { return fitCount(b, wk) - fitCount(a, wk) || (b.top ? 1 : 0) - (a.top ? 1 : 0) || a.minutes - b.minutes; });
+  }
+
+  function renderForWho() {
+    var kids = validKids(), el = document.getElementById("forWho");
+    document.getElementById("onboard").hidden = kids.length > 0;
+    el.hidden = !kids.length;
+    if (!kids.length || !state.edition) return;
+    var d = refDate(state.edition.weekends[state.weekend]);
+    el.innerHTML = "Voor " + joinNames(kids.map(function (k) { return "<b>" + esc(kidName(k, state.kids.indexOf(k))) + "</b> (" + ageOn(k.birth, d) + ")"; }));
+  }
+
+  function kidRowHTML(k, i) {
+    var err = kidError(k), a = k.birth && !err ? ageOn(k.birth, todayISO()) : null;
+    return '<div class="kid" data-kid="' + esc(k.id) + '">' +
+      '<label for="kid-name-' + esc(k.id) + '">Voornaam<input id="kid-name-' + esc(k.id) + '" type="text" autocomplete="off" maxlength="30" data-field="name" value="' + esc(k.name || "") + '" placeholder="Kind ' + (i + 1) + '"></label>' +
+      '<label for="kid-birth-' + esc(k.id) + '">Geboortedatum<input id="kid-birth-' + esc(k.id) + '" type="date" data-field="birth" max="' + todayISO() + '" value="' + esc(k.birth || "") + '"></label>' +
+      '<p class="kid-err"' + (err ? "" : " hidden") + '>' + esc(err) + '</p>' +
+      '<div class="kid-foot"><span class="kid-age">' + (a == null ? '<span class="count">Vul een geboortedatum in</span>' : a + " jaar") + '</span>' +
+      '<button type="button" class="btn" data-kidrm="' + esc(k.id) + '">Verwijderen</button></div></div>';
+  }
+  function renderKids() {
+    document.getElementById("kidList").innerHTML = state.kids.length ? state.kids.map(kidRowHTML).join("") :
+      '<div class="empty"><strong>Nog geen kinderen</strong>Tik op "+ Kind toevoegen".</div>';
+  }
+  function updateKidRow(k) {
+    var row = document.querySelector('.kid[data-kid="' + k.id + '"]'); if (!row) return;
+    var err = kidError(k), a = k.birth && !err ? ageOn(k.birth, todayISO()) : null;
+    var e = row.querySelector(".kid-err"); e.hidden = !err; e.textContent = err;
+    row.querySelector(".kid-age").innerHTML = a == null ? '<span class="count">Vul een geboortedatum in</span>' : a + " jaar";
+  }
+  function kidsChanged() { save("kids", state.kids); if (state.edition) { renderForWho(); renderChips(); renderList(); renderFavs(); } }
+
+  function renderList() {
+    var wk = state.edition.weekends[state.weekend];
+    var items = filtered(wk);
+    document.getElementById("count").textContent = items.length + " van " + wk.tips.length + " tips · " + wk.longLabel;
+    document.getElementById("list").innerHTML = items.length ? items.map(function (t) { return cardHTML(t, wk); }).join("") :
+      '<div class="empty"><strong>Geen tips met deze filters</strong>Zet een filter uit of kies een grotere rijafstand.</div>';
+  }
+
+  function renderFavs() {
+    var ids = Object.keys(state.favs);
+    var b = document.getElementById("favBadge");
+    b.hidden = !ids.length; b.textContent = ids.length;
+    document.getElementById("favList").innerHTML = ids.length ? ids.map(function (id) { return cardHTML(state.favs[id], null); }).join("") :
+      '<div class="empty"><strong>Nog geen favorieten</strong>Tik op het hartje bij een tip om hem hier te bewaren.</div>';
+  }
+
+  function renderArchive() {
+    var eds = (state.index && state.index.editions) || [];
+    document.getElementById("archList").innerHTML = eds.slice().reverse().map(function (e) {
+      return '<button type="button" class="arch" data-ed="' + esc(e.id) + '" aria-current="' + (e.id === state.editionId) + '"><span><b>' + esc(e.label) + '</b><span>' + esc(e.weekends || "") + '</span></span><span>' + (e.id === state.index.latest ? "Nieuwste" : "Bekijk") + '</span></button>';
+    }).join("") || '<div class="empty"><strong>Nog geen archief</strong>Na de eerste maandag verschijnen hier de vorige overzichten.</div>';
+  }
+
+  function renderSeasonChips() {
+    var cur = state.seasonOverride;
+    document.getElementById("chipsSeason").innerHTML = chip("season", "auto", "Automatisch", cur === "auto") +
+      Object.keys(SEASONS).map(function (k) { return chip("season", k, SEASONS[k], cur === k); }).join("");
+  }
+
+  function renderBanner() {
+    var el = document.getElementById("editionBanner");
+    var isLatest = state.index && state.editionId === state.index.latest;
+    el.hidden = isLatest && !/demo/i.test(state.edition.label || "");
+    el.textContent = isLatest ? (state.edition.label + ". Vanaf de automatisering komt er elke maandag om 7u een nieuwe editie.") : ("Je bekijkt een oudere editie: " + state.edition.label + ".");
+  }
+
+  function renderAll() {
+    renderBanner(); renderWeekendSeg(); renderForWho(); renderWeather(); renderChips(); renderList(); renderFavs(); renderArchive(); renderSeasonChips();
+  }
+
+  // ---------- family form ----------
+  document.getElementById("kidList").addEventListener("input", function (e) {
+    var f = e.target.dataset.field, row = e.target.closest(".kid"); if (!f || !row) return;
+    var k = state.kids.filter(function (x) { return x.id === row.dataset.kid; })[0]; if (!k) return;
+    k[f] = e.target.value;
+    updateKidRow(k); kidsChanged();
+  });
+
+  // ---------- events ----------
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.wk != null) { state.weekend = +b.dataset.wk; renderWeekendSeg(); renderForWho(); renderWeather(); renderList(); return; }
+    if (b.id === "addKid") {
+      var nk = { id: "k" + Date.now().toString(36), name: "", birth: "" };
+      state.kids.push(nk); save("kids", state.kids); renderKids();
+      var inp = document.getElementById("kid-name-" + nk.id); if (inp) inp.focus();
+      return;
+    }
+    if (b.dataset.kidrm) { state.kids = state.kids.filter(function (k) { return k.id !== b.dataset.kidrm; }); renderKids(); kidsChanged(); return; }
+    var g = b.dataset.g, v = b.dataset.v;
+    if (g === "day") state.day = v;
+    else if (g === "max") state.maxMin = +v;
+    else if (g === "set") state.setting = state.setting === v ? "alle" : v;
+    else if (g === "cat") state.cat = state.cat === v ? "alle" : v;
+    else if (g === "done") state.hideDone = !state.hideDone;
+    else if (g === "fit") state.allFit = !state.allFit;
+    else if (g === "season") { state.seasonOverride = v; save("season", v); applySeason(); renderSeasonChips(); return; }
+    if (g) { renderChips(); renderList(); return; }
+    if (b.dataset.ed) { loadEdition(b.dataset.ed).then(function () { location.hash = "tips"; }); return; }
+    if (b.id === "resetDone") { state.done = {}; save("done", state.done); renderList(); renderFavs(); b.textContent = "Gewist"; return; }
+    var act = b.dataset.act; if (!act) return;
+    var card = b.closest(".card"), id = card && card.dataset.id; if (!id) return;
+    var tip = findTip(id);
+    if (act === "fav") { if (state.favs[id]) delete state.favs[id]; else if (tip) state.favs[id] = tip; save("favs", state.favs); }
+    if (act === "done") { if (state.done[id]) delete state.done[id]; else state.done[id] = new Date().toISOString().slice(0, 10); save("done", state.done); }
+    renderList(); renderFavs();
+  });
+
+  function findTip(id) {
+    var wks = state.edition.weekends;
+    for (var i = 0; i < wks.length; i++) for (var j = 0; j < wks[i].tips.length; j++) if (wks[i].tips[j].id === id) return wks[i].tips[j];
+    return state.favs[id] || null;
+  }
+
+  // ---------- routing ----------
+  var VIEWS = ["tips", "favorieten", "archief", "gezin"];
+  function route() {
+    var v = (location.hash || "#tips").slice(1); if (v === "info") v = "gezin"; if (VIEWS.indexOf(v) < 0) v = "tips";
+    VIEWS.forEach(function (n) { document.getElementById("view-" + n).hidden = n !== v; });
+    document.querySelectorAll("nav.bottom a").forEach(function (a) { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+
+  // ---------- data ----------
+  function getJSON(url) { return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  function loadEdition(id) {
+    var e = state.index.editions.filter(function (x) { return x.id === id; })[0];
+    return getJSON("data/" + e.file).then(function (ed) { state.edition = ed; state.editionId = id; state.weekend = 0; renderAll(); if (id === state.index.latest) refreshWeather(); });
+  }
+  function refreshWeather() {
+    // Live update where the network allows it; otherwise the forecast stored in the edition stays.
+    var ctrl = window.AbortController ? new AbortController() : null;
+    if (ctrl) setTimeout(function () { ctrl.abort(); }, 5000);
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=" + LAT + "&longitude=" + LON + "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe%2FBrussels&forecast_days=16", ctrl ? { signal: ctrl.signal } : {})
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        var d = j.daily, changed = false;
+        state.edition.weekends.forEach(function (w) { w.days.forEach(function (day) {
+          var i = d.time.indexOf(day.date);
+          if (i >= 0 && d.weather_code[i] != null) { day.weather = { code: d.weather_code[i], tmax: d.temperature_2m_max[i], tmin: d.temperature_2m_min[i], rain: d.precipitation_probability_max[i] }; changed = true; }
+        }); });
+        if (changed) { renderWeather(); renderList(); }
+      }).catch(function () {});
+  }
+
+  applySeason();
+  renderKids();
+  renderForWho();
+  route();
+  getJSON("data/index.json").then(function (idx) { state.index = idx; return loadEdition(idx.latest); })
+    .catch(function () {
+      document.getElementById("list").innerHTML = '<div class="empty"><strong>De tips konden niet laden</strong>Controleer je internetverbinding en open de app opnieuw.</div>';
+    });
+
+  if ("serviceWorker" in navigator && location.protocol === "https:" && !/claude/.test(location.hostname)) {
+    try { navigator.serviceWorker.register("sw.js").catch(function () {}); } catch (e) {}
+  }
+})();
+</script>
+
+</body>
+</html>

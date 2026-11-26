@@ -1,0 +1,17 @@
+{
+  "name": "Uitstapjes",
+  "short_name": "Uitstapjes",
+  "description": "Elke maandag leuke weekenduitstapjes voor het gezin, binnen 1u rijden van Oostrozebeke.",
+  "lang": "nl-BE",
+  "start_url": "./#tips",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fdf9f5",
+  "theme_color": "#8f3d10",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

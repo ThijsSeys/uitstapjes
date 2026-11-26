@@ -1,0 +1,757 @@
+{
+    "edition":  "2026-11-26",
+    "label":  "Demo-editie van donderdag 26 november",
+    "origin":  "Oostrozebeke centrum",
+    "generatedBy":  "Demo: handmatig samengesteld met webzoektochten",
+    "weekends":  [
+                     {
+                         "id":  "2026-11-28",
+                         "label":  "28–29 nov",
+                         "longLabel":  "Zaterdag 28 en zondag 29 november",
+                         "days":  [
+                                      {
+                                          "date":  "2026-11-28",
+                                          "day":  "za",
+                                          "weather":  {
+                                                          "code":  51,
+                                                          "tmax":  2,
+                                                          "tmin":  -3,
+                                                          "rain":  14
+                                                      }
+                                      },
+                                      {
+                                          "date":  "2026-11-29",
+                                          "day":  "zo",
+                                          "weather":  {
+                                                          "code":  80,
+                                                          "tmax":  5,
+                                                          "tmin":  1,
+                                                          "rain":  52
+                                                      }
+                                      }
+                                  ],
+                         "tips":  [
+                                      {
+                                          "id":  "kerstmarkt-roeselare",
+                                          "title":  "Kerstmarkt Roeselare",
+                                          "category":  "evenement",
+                                          "place":  "Roeselare, Grote Markt",
+                                          "destination":  "Grote Markt, 8800 Roeselare",
+                                          "minutes":  20,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "top":  true,
+                                          "price":  "Gratis toegang",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Kindvriendelijke markt, de Kerstman komt op bezoek.",
+                                          "why":  "Dichtbij en kort: chalets, lichtjes en met wat geluk de Kerstman. Ideaal voor een uurtje op zaterdag, als het droog is.",
+                                          "hours":  "Loopt van 20 november tot 3 januari",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Ondergrondse parkings in het centrum",
+                                          "url":  "https://belgischemarkten.be/kerstmarkt-roeselare.html",
+                                          "check":  "Bekijk vooraf wanneer de Kerstman er is.",
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "plopsaland-de-panne",
+                                          "title":  "Plopsaland De Panne in winterkleed",
+                                          "category":  "attractie",
+                                          "place":  "De Panne",
+                                          "destination":  "Plopsaland De Panne, De Pannelaan 68, 8660 De Panne",
+                                          "minutes":  55,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "top":  true,
+                                          "plopsa":  true,
+                                          "price":  "Inbegrepen in jullie abonnement",
+                                          "setting":  "beide",
+                                          "ageNote":  "Veel attracties voor kleuters, Bumba en Maya voor de 3-jarige.",
+                                          "why":  "Met jullie abonnement kost het niets extra. Kerstsfeer, een kerstparade en overdekte attracties, dus ook bij buien op zondag een optie.",
+                                          "hours":  "Meestal 11u–18u in het winterseizoen",
+                                          "booking":  "Abonnees: soms vooraf een datum reserveren",
+                                          "buggy":  true,
+                                          "parking":  "Grote parking aan het park (betalend)",
+                                          "url":  "https://www.plopsa.com/nl/plopsaland-de-panne",
+                                          "check":  "De winterkalender voor 2026 is niet officieel bevestigd. Bekijk op plopsa.com of het park dit weekend open is.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Wickieland_shops_and_restaurants%2C_Plopsaland_De_Panne%2C_2021.jpg/960px-Wickieland_shops_and_restaurants%2C_Plopsaland_De_Panne%2C_2021.jpg",
+                                                        "credit":  "DimiTalen",
+                                                        "license":  "CC0",
+                                                        "caption":  "Wickieland (zomer 2021)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Wickieland_shops_and_restaurants,_Plopsaland_De_Panne,_2021.jpg"
+                                                    },
+                                          "ageMin":  1,
+                                          "ageMax":  12
+                                      },
+                                      {
+                                          "id":  "sinterklaas-jabbeke",
+                                          "title":  "Intrede van Sinterklaas in Jabbeke",
+                                          "category":  "evenement",
+                                          "place":  "Jabbeke",
+                                          "destination":  "Dorpsstraat, 8490 Jabbeke",
+                                          "minutes":  40,
+                                          "days":  [
+                                                       "zo"
+                                                   ],
+                                          "price":  "Gratis",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Voor beide jongens nog helemaal magisch.",
+                                          "why":  "Op zondag om 14u komt de Sint aan, een week voor het Sinterklaasweekend. Neem regenkledij mee, want er worden buien voorspeld.",
+                                          "hours":  "Zondag 29 november, 14u",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Parkeren in de dorpskern, kom op tijd",
+                                          "url":  "https://www.sintavontuur.be/",
+                                          "check":  "Uur en route komen van een overzichtssite. Controleer ze bij de gemeente Jabbeke.",
+                                          "ageMin":  2,
+                                          "ageMax":  9
+                                      },
+                                      {
+                                          "id":  "sinterklaas-knokke-heist",
+                                          "title":  "Intrede van Sinterklaas in Knokke-Heist",
+                                          "category":  "evenement",
+                                          "place":  "Knokke-Heist",
+                                          "destination":  "Knokke-Heist",
+                                          "minutes":  55,
+                                          "days":  [
+                                                       "zo"
+                                                   ],
+                                          "price":  "Gratis",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Voor beide.",
+                                          "why":  "Ook op zondag om 14u. Combineer met het Zwin in de voormiddag.",
+                                          "hours":  "Zondag 29 november, 14u",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Betalend parkeren in Knokke",
+                                          "url":  "https://www.sinterklais.nl/intrede-sinterklaas-2026",
+                                          "check":  "Plaats en uur komen van een overzichtssite. Controleer ze bij de gemeente Knokke-Heist.",
+                                          "ageMin":  2,
+                                          "ageMax":  9
+                                      },
+                                      {
+                                          "id":  "sea-life-blankenberge",
+                                          "title":  "Sea Life Blankenberge",
+                                          "category":  "attractie",
+                                          "place":  "Blankenberge, zeedijk",
+                                          "destination":  "Sea Life Blankenberge, Koning Albert I-laan 116, 8370 Blankenberge",
+                                          "minutes":  50,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €20–25 per persoon online, kinderen onder 3 meestal gratis",
+                                          "setting":  "binnen",
+                                          "ageNote":  "Zeehonden, haaien en een tunnel onder water. De 3-jarige mag gratis mee.",
+                                          "why":  "Helemaal binnen, dus perfect voor de regenachtige zondag. Voor dierenliefhebbers.",
+                                          "hours":  "Dagelijks open, ongeveer 10u–17u (laatste toegang 1u voor sluiting)",
+                                          "booking":  "Online een tijdslot kiezen is goedkoper",
+                                          "buggy":  true,
+                                          "parking":  "Parkings in Blankenberge (betalend)",
+                                          "url":  "https://www.visitsealife.com/blankenberge/",
+                                          "check":  "Bronnen geven 16u of 17u als sluitingsuur.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Sea_lion_show_at_the_observation_pool%2C_Sea_Life_Blankenberge%2C_2011.jpg/960px-Sea_lion_show_at_the_observation_pool%2C_Sea_Life_Blankenberge%2C_2011.jpg",
+                                                        "credit":  "DimiTalen",
+                                                        "license":  "CC0",
+                                                        "caption":  "Zeeleeuwenshow (2011)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Sea_lion_show_at_the_observation_pool,_Sea_Life_Blankenberge,_2011.jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "zwin-natuur-park",
+                                          "title":  "Zwin Natuur Park",
+                                          "category":  "natuur",
+                                          "place":  "Knokke-Heist",
+                                          "destination":  "Zwin Natuur Park, Graaf Léon Lippensdreef 8, 8300 Knokke-Heist",
+                                          "minutes":  55,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €15 per volwassene, kinderen onder 6 gratis, 6–11 jaar reductie",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Ooievaars en vogels van dichtbij, met verharde paden.",
+                                          "why":  "Frisse lucht en vogels kijken. Op zaterdag blijft het grotendeels droog, maar kleed de jongens warm aan, want het wordt koud.",
+                                          "hours":  "Ongeveer 10u–17u",
+                                          "booking":  "Online tickets aanbevolen",
+                                          "buggy":  true,
+                                          "parking":  "Eigen parking aan het park",
+                                          "url":  "https://www.zwin.be/",
+                                          "check":  "Bekijk de winteruren op zwin.be.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Ciconia_ciconia_in_Zwin%2C_Belgium_%284%29.jpg/960px-Ciconia_ciconia_in_Zwin%2C_Belgium_%284%29.jpg",
+                                                        "credit":  "Michiel Dumon",
+                                                        "license":  "CC BY-SA 3.0",
+                                                        "caption":  "Ooievaar in het Zwin",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Ciconia_ciconia_in_Zwin,_Belgium_(4).jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "boebalu-roeselare",
+                                          "title":  "Binnenspeeltuin Boebalu",
+                                          "category":  "attractie",
+                                          "place":  "Roeselare",
+                                          "destination":  "Izegemseaardeweg 144, 8800 Roeselare",
+                                          "minutes":  20,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €8–10 per kind, volwassenen meestal gratis",
+                                          "setting":  "binnen",
+                                          "ageNote":  "Aparte peuterzone voor de kleinste.",
+                                          "why":  "Klimmen, glijden en ravotten terwijl het buiten regent. Dichtbij, dus ook voor een namiddag.",
+                                          "hours":  "Weekend meestal vanaf 10u",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Gratis parking",
+                                          "url":  "https://www.google.com/search?q=Boebalu+Roeselare",
+                                          "check":  "Bel of kijk online naar de uren: 0478 46 22 26.",
+                                          "ageMin":  1,
+                                          "ageMax":  10
+                                      },
+                                      {
+                                          "id":  "kids-and-play-izegem",
+                                          "title":  "Binnenspeeltuin Kids \u0026 Play",
+                                          "category":  "attractie",
+                                          "place":  "Izegem",
+                                          "destination":  "Krekelmotestraat 62, 8870 Izegem",
+                                          "minutes":  15,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €8–10 per kind",
+                                          "setting":  "binnen",
+                                          "ageNote":  "Voor beide leeftijden.",
+                                          "why":  "Het dichtstbijzijnde alternatief bij slecht weer.",
+                                          "hours":  "Weekend overdag",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Gratis parking",
+                                          "url":  "https://www.google.com/search?q=Kids+%26+Play+Izegem",
+                                          "check":  "Bel of kijk online naar de uren: 051 31 92 31.",
+                                          "ageMin":  1,
+                                          "ageMax":  10
+                                      },
+                                      {
+                                          "id":  "kerstmarkt-brugge",
+                                          "title":  "Kerstmarkt en Wintergloed in Brugge",
+                                          "category":  "evenement",
+                                          "place":  "Brugge, Markt en Simon Stevinplein",
+                                          "destination":  "Markt, 8000 Brugge",
+                                          "minutes":  40,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Gratis toegang",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Sfeervol voor iedereen. Het lichtparcours is vooral leuk in het donker.",
+                                          "why":  "Ga laat in de namiddag, dan zie je de verlichting in het donker. Kom met de buggy, want het wordt druk.",
+                                          "hours":  "Loopt van 20 november tot 3 januari",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Parking Centrum-Station + gratis pendelbus",
+                                          "url":  "https://www.visitbruges.be/",
+                                          "check":  "De openingsuren voor 2026 staan op visitbruges.be.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Bruges_Christmas_market_2013.jpg/960px-Bruges_Christmas_market_2013.jpg",
+                                                        "credit":  "DimiTalen",
+                                                        "license":  "CC0",
+                                                        "caption":  "Kerstmarkt met schaatsbaan op de Markt (2013)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Bruges_Christmas_market_2013.jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "huis-van-alijn",
+                                          "title":  "Familiezoektocht in het Huis van Alijn",
+                                          "category":  "cultuur",
+                                          "place":  "Gent, Kraanlei",
+                                          "destination":  "Huis van Alijn, Kraanlei 65, 9000 Gent",
+                                          "minutes":  40,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Betalend voor volwassenen, kinderen meestal gratis",
+                                          "setting":  "binnen",
+                                          "ageNote":  "De zoektocht is voor 5 tot 12 jaar. De 3-jarige kan mee, maar is wellicht snel uitgekeken.",
+                                          "why":  "\u0027De mysterieuze verdwijning van Hendrik Alijn\u0027: een speurtocht door een museum vol oud speelgoed en poppenkast.",
+                                          "hours":  "Dinsdag tot zondag",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Parking Vrijdagmarkt of Sint-Michiels",
+                                          "url":  "https://huisvanalijn.be/",
+                                          "check":  "Bekijk prijs en uren op huisvanalijn.be.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Huis_van_Alijn_straatkant_Kraanlei.jpg/960px-Huis_van_Alijn_straatkant_Kraanlei.jpg",
+                                                        "credit":  "Huis van Alijn",
+                                                        "license":  "CC BY-SA 4.0",
+                                                        "caption":  "Het museum aan de Kraanlei",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Huis_van_Alijn_straatkant_Kraanlei.jpg"
+                                                    },
+                                          "ageMin":  5,
+                                          "ageMax":  12
+                                      },
+                                      {
+                                          "id":  "de-gavers-harelbeke",
+                                          "title":  "Provinciedomein De Gavers",
+                                          "category":  "natuur",
+                                          "place":  "Harelbeke",
+                                          "destination":  "Provinciedomein De Gavers, Eilandstraat, 8530 Harelbeke",
+                                          "minutes":  20,
+                                          "days":  [
+                                                       "za"
+                                                   ],
+                                          "price":  "Gratis",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Speeltuin, wandelen rond het meer, buggy-vriendelijk.",
+                                          "why":  "Gratis uitwaaien op zaterdag, voor de buien van zondag. Neem warme chocomelk mee.",
+                                          "hours":  "Het domein is altijd open",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Gratis parking",
+                                          "url":  "https://www.west-vlaanderen.be/de-gavers",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/De_Gavers_-_Harelbeke.jpg/960px-De_Gavers_-_Harelbeke.jpg",
+                                                        "credit":  "Spotter2",
+                                                        "license":  "CC BY-SA 4.0",
+                                                        "caption":  "De Koutermolen in De Gavers",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:De_Gavers_-_Harelbeke.jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "bellewaerde-winter",
+                                          "title":  "Bellewaerde Winter",
+                                          "category":  "attractie",
+                                          "place":  "Ieper (Zillebeke)",
+                                          "destination":  "Bellewaerde, Meenseweg 497, 8902 Ieper",
+                                          "minutes":  40,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €30+ per persoon, kleine kinderen goedkoper",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Dieren en kinderattracties.",
+                                          "why":  "Dieren en attracties in winterse sfeer. Een alternatief voor Plopsa als je eens iets anders wil.",
+                                          "hours":  "Volgens de winterkalender",
+                                          "booking":  "Online tickets goedkoper",
+                                          "buggy":  true,
+                                          "parking":  "Eigen parking (betalend)",
+                                          "url":  "https://www.bellewaerde.be/",
+                                          "check":  "De winteropening voor 2026 is niet bevestigd. Bekijk op bellewaerde.be of het park open is.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Swing_rides_in_Bellewaerde_16-08-2016_%28Be%29.jpg/960px-Swing_rides_in_Bellewaerde_16-08-2016_%28Be%29.jpg",
+                                                        "credit":  "Pierre André Leclercq",
+                                                        "license":  "CC BY 4.0",
+                                                        "caption":  "Zweefmolen aan de ingang (zomer 2016)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Swing_rides_in_Bellewaerde_16-08-2016_(Be).jpg"
+                                                    },
+                                          "ageMin":  2,
+                                          "ageMax":  null
+                                      }
+                                  ]
+                     },
+                     {
+                         "id":  "2026-12-05",
+                         "label":  "5–6 dec",
+                         "longLabel":  "Zaterdag 5 en zondag 6 december (Sinterklaas)",
+                         "days":  [
+                                      {
+                                          "date":  "2026-12-05",
+                                          "day":  "za",
+                                          "weather":  {
+                                                          "code":  45,
+                                                          "tmax":  2,
+                                                          "tmin":  -3,
+                                                          "rain":  9
+                                                      }
+                                      },
+                                      {
+                                          "date":  "2026-12-06",
+                                          "day":  "zo",
+                                          "weather":  {
+                                                          "code":  51,
+                                                          "tmax":  9,
+                                                          "tmin":  0,
+                                                          "rain":  16
+                                                      }
+                                      }
+                                  ],
+                         "tips":  [
+                                      {
+                                          "id":  "gentse-winterfeesten",
+                                          "title":  "Gentse Winterfeesten",
+                                          "category":  "evenement",
+                                          "place":  "Gent, historisch centrum",
+                                          "destination":  "Sint-Baafsplein, 9000 Gent",
+                                          "minutes":  40,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "top":  true,
+                                          "price":  "Gratis toegang, attracties en schaatsen betalend",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Draaimolens voor de kleinste, schaatsen en reuzenrad voor de 6-jarige.",
+                                          "why":  "Eerste weekend van de Winterfeesten: zeven pleinen vol chalets, een ijspiste en kermisattracties.",
+                                          "hours":  "Van 3 december tot 3 januari, overdag en \u0027s avonds",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Park \u0026 Ride of parking Vrijdagmarkt",
+                                          "url":  "https://visit.gent.be/",
+                                          "check":  "Data bevestigd door Stad Gent. De uren voor 2026 zijn nog niet gepubliceerd.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Christmas_market%2C_Korenmarkt%2C_Ghent%2C_2013.jpg/960px-Christmas_market%2C_Korenmarkt%2C_Ghent%2C_2013.jpg",
+                                                        "credit":  "DimiTalen",
+                                                        "license":  "CC0",
+                                                        "caption":  "Kerstmarkt op de Korenmarkt (2013)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Christmas_market,_Korenmarkt,_Ghent,_2013.jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "winterdorp-oudenaarde",
+                                          "title":  "Winterdorp Oudenaarde met schaatsbaan",
+                                          "category":  "evenement",
+                                          "place":  "Oudenaarde, Markt",
+                                          "destination":  "Markt, 9700 Oudenaarde",
+                                          "minutes":  35,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "top":  true,
+                                          "price":  "Gratis toegang, schaatsen betalend",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Kunststof schaatsbaan: minder glad. Jongste met hulp of aan de hand.",
+                                          "why":  "Het Winterdorp opent op 4 december. Een carrousel, een kerstmarkt en de schaatsbaan is terug.",
+                                          "hours":  "Van 4 tot 27 december",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Parkings rond de Markt",
+                                          "url":  "https://www.oudenaarde.be/",
+                                          "check":  "Bekijk de uren van de schaatsbaan op oudenaarde.be.",
+                                          "ageMin":  3,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "plopsaland-de-panne",
+                                          "title":  "Plopsaland De Panne in winterkleed",
+                                          "category":  "attractie",
+                                          "place":  "De Panne",
+                                          "destination":  "Plopsaland De Panne, De Pannelaan 68, 8660 De Panne",
+                                          "minutes":  55,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "top":  true,
+                                          "plopsa":  true,
+                                          "price":  "Inbegrepen in jullie abonnement",
+                                          "setting":  "beide",
+                                          "ageNote":  "Veel attracties voor kleuters.",
+                                          "why":  "Kerstparade en winterse shows, gratis met het abonnement. De zachte zondag is het beste moment.",
+                                          "hours":  "Meestal 11u–18u",
+                                          "booking":  "Abonnees: soms vooraf een datum reserveren",
+                                          "buggy":  true,
+                                          "parking":  "Grote parking aan het park (betalend)",
+                                          "url":  "https://www.plopsa.com/nl/plopsaland-de-panne",
+                                          "check":  "De winterkalender voor 2026 is niet officieel bevestigd. Bekijk op plopsa.com of het park dit weekend open is.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Wickieland_shops_and_restaurants%2C_Plopsaland_De_Panne%2C_2021.jpg/960px-Wickieland_shops_and_restaurants%2C_Plopsaland_De_Panne%2C_2021.jpg",
+                                                        "credit":  "DimiTalen",
+                                                        "license":  "CC0",
+                                                        "caption":  "Wickieland (zomer 2021)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Wickieland_shops_and_restaurants,_Plopsaland_De_Panne,_2021.jpg"
+                                                    },
+                                          "ageMin":  1,
+                                          "ageMax":  12
+                                      },
+                                      {
+                                          "id":  "kerstmarkt-waregem",
+                                          "title":  "Kerstmarkt Waregem",
+                                          "category":  "evenement",
+                                          "place":  "Waregem",
+                                          "destination":  "Markt, 8790 Waregem",
+                                          "minutes":  15,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Gratis toegang",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Voor beide.",
+                                          "why":  "Opent op 4 december. Een kwartiertje rijden, dus perfect voor een korte uitstap op Sinterklaasdag.",
+                                          "hours":  "Van 4 december tot 3 januari",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Parkings in het centrum",
+                                          "url":  "https://www.waregem.be/",
+                                          "check":  "De data komen van een overzichtssite. Controleer ze op waregem.be.",
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "kerstmarkt-roeselare",
+                                          "title":  "Kerstmarkt Roeselare",
+                                          "category":  "evenement",
+                                          "place":  "Roeselare, Grote Markt",
+                                          "destination":  "Grote Markt, 8800 Roeselare",
+                                          "minutes":  20,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Gratis toegang",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Kindvriendelijke markt, de Kerstman komt op bezoek.",
+                                          "why":  "Dichtbij, als je de markt vorige week niet hebt gedaan.",
+                                          "hours":  "Loopt van 20 november tot 3 januari",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Ondergrondse parkings in het centrum",
+                                          "url":  "https://belgischemarkten.be/kerstmarkt-roeselare.html",
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "sea-life-blankenberge",
+                                          "title":  "Sea Life Blankenberge",
+                                          "category":  "attractie",
+                                          "place":  "Blankenberge, zeedijk",
+                                          "destination":  "Sea Life Blankenberge, Koning Albert I-laan 116, 8370 Blankenberge",
+                                          "minutes":  50,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €20–25 per persoon online, kinderen onder 3 meestal gratis",
+                                          "setting":  "binnen",
+                                          "ageNote":  "Zeehonden, haaien en een tunnel onder water.",
+                                          "why":  "Binnen en warm op de mistige, ijskoude zaterdag.",
+                                          "hours":  "Dagelijks, ongeveer 10u–17u",
+                                          "booking":  "Online een tijdslot kiezen is goedkoper",
+                                          "buggy":  true,
+                                          "parking":  "Parkings in Blankenberge (betalend)",
+                                          "url":  "https://www.visitsealife.com/blankenberge/",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Sea_lion_show_at_the_observation_pool%2C_Sea_Life_Blankenberge%2C_2011.jpg/960px-Sea_lion_show_at_the_observation_pool%2C_Sea_Life_Blankenberge%2C_2011.jpg",
+                                                        "credit":  "DimiTalen",
+                                                        "license":  "CC0",
+                                                        "caption":  "Zeeleeuwenshow (2011)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Sea_lion_show_at_the_observation_pool,_Sea_Life_Blankenberge,_2011.jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "kerstmarkt-brugge",
+                                          "title":  "Kerstmarkt en Wintergloed in Brugge",
+                                          "category":  "evenement",
+                                          "place":  "Brugge, Markt en Simon Stevinplein",
+                                          "destination":  "Markt, 8000 Brugge",
+                                          "minutes":  40,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Gratis toegang",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Sfeervol voor iedereen.",
+                                          "why":  "Combineer met een warme wafel en het lichtparcours als het donker wordt.",
+                                          "hours":  "Loopt van 20 november tot 3 januari",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Parking Centrum-Station + gratis pendelbus",
+                                          "url":  "https://www.visitbruges.be/",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Bruges_Christmas_market_2013.jpg/960px-Bruges_Christmas_market_2013.jpg",
+                                                        "credit":  "DimiTalen",
+                                                        "license":  "CC0",
+                                                        "caption":  "Kerstmarkt met schaatsbaan op de Markt (2013)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Bruges_Christmas_market_2013.jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "bellewaerde-winter",
+                                          "title":  "Bellewaerde Winter",
+                                          "category":  "attractie",
+                                          "place":  "Ieper (Zillebeke)",
+                                          "destination":  "Bellewaerde, Meenseweg 497, 8902 Ieper",
+                                          "minutes":  40,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €30+ per persoon, kleine kinderen goedkoper",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Dieren en kinderattracties.",
+                                          "why":  "Dieren en attracties in winterse sfeer.",
+                                          "hours":  "Volgens de winterkalender",
+                                          "booking":  "Online tickets goedkoper",
+                                          "buggy":  true,
+                                          "parking":  "Eigen parking (betalend)",
+                                          "url":  "https://www.bellewaerde.be/",
+                                          "check":  "De winteropening voor 2026 is niet bevestigd. Bekijk op bellewaerde.be of het park open is.",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Swing_rides_in_Bellewaerde_16-08-2016_%28Be%29.jpg/960px-Swing_rides_in_Bellewaerde_16-08-2016_%28Be%29.jpg",
+                                                        "credit":  "Pierre André Leclercq",
+                                                        "license":  "CC BY 4.0",
+                                                        "caption":  "Zweefmolen aan de ingang (zomer 2016)",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Swing_rides_in_Bellewaerde_16-08-2016_(Be).jpg"
+                                                    },
+                                          "ageMin":  2,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "boebalu-roeselare",
+                                          "title":  "Binnenspeeltuin Boebalu",
+                                          "category":  "attractie",
+                                          "place":  "Roeselare",
+                                          "destination":  "Izegemseaardeweg 144, 8800 Roeselare",
+                                          "minutes":  20,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €8–10 per kind",
+                                          "setting":  "binnen",
+                                          "ageNote":  "Aparte peuterzone.",
+                                          "why":  "Energie kwijt na het Sinterklaasfeest thuis.",
+                                          "hours":  "Weekend meestal vanaf 10u",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Gratis parking",
+                                          "url":  "https://www.google.com/search?q=Boebalu+Roeselare",
+                                          "check":  "Bel of kijk online naar de uren: 0478 46 22 26.",
+                                          "ageMin":  1,
+                                          "ageMax":  10
+                                      },
+                                      {
+                                          "id":  "zwin-natuur-park",
+                                          "title":  "Zwin Natuur Park",
+                                          "category":  "natuur",
+                                          "place":  "Knokke-Heist",
+                                          "destination":  "Zwin Natuur Park, Graaf Léon Lippensdreef 8, 8300 Knokke-Heist",
+                                          "minutes":  55,
+                                          "days":  [
+                                                       "zo"
+                                                   ],
+                                          "price":  "Ca. €15 per volwassene, kinderen onder 6 gratis",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Verharde paden, ooievaars.",
+                                          "why":  "De zondag wordt zacht (9°C) en zo goed als droog. Ideaal om buiten te wandelen.",
+                                          "hours":  "Ongeveer 10u–17u",
+                                          "booking":  "Online tickets aanbevolen",
+                                          "buggy":  true,
+                                          "parking":  "Eigen parking aan het park",
+                                          "url":  "https://www.zwin.be/",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Ciconia_ciconia_in_Zwin%2C_Belgium_%284%29.jpg/960px-Ciconia_ciconia_in_Zwin%2C_Belgium_%284%29.jpg",
+                                                        "credit":  "Michiel Dumon",
+                                                        "license":  "CC BY-SA 3.0",
+                                                        "caption":  "Ooievaar in het Zwin",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Ciconia_ciconia_in_Zwin,_Belgium_(4).jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "de-gavers-harelbeke",
+                                          "title":  "Provinciedomein De Gavers",
+                                          "category":  "natuur",
+                                          "place":  "Harelbeke",
+                                          "destination":  "Provinciedomein De Gavers, Eilandstraat, 8530 Harelbeke",
+                                          "minutes":  20,
+                                          "days":  [
+                                                       "zo"
+                                                   ],
+                                          "price":  "Gratis",
+                                          "setting":  "buiten",
+                                          "ageNote":  "Speeltuin en wandelpad rond het meer.",
+                                          "why":  "Gratis en dichtbij. Een wandeling met de nieuwe Sinterklaasfiets?",
+                                          "hours":  "Het domein is altijd open",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Gratis parking",
+                                          "url":  "https://www.west-vlaanderen.be/de-gavers",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/De_Gavers_-_Harelbeke.jpg/960px-De_Gavers_-_Harelbeke.jpg",
+                                                        "credit":  "Spotter2",
+                                                        "license":  "CC BY-SA 4.0",
+                                                        "caption":  "De Koutermolen in De Gavers",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:De_Gavers_-_Harelbeke.jpg"
+                                                    },
+                                          "ageMin":  0,
+                                          "ageMax":  null
+                                      },
+                                      {
+                                          "id":  "huis-van-alijn",
+                                          "title":  "Familiezoektocht in het Huis van Alijn",
+                                          "category":  "cultuur",
+                                          "place":  "Gent, Kraanlei",
+                                          "destination":  "Huis van Alijn, Kraanlei 65, 9000 Gent",
+                                          "minutes":  40,
+                                          "days":  [
+                                                       "za",
+                                                       "zo"
+                                                   ],
+                                          "price":  "Betalend voor volwassenen, kinderen meestal gratis",
+                                          "setting":  "binnen",
+                                          "ageNote":  "Zoektocht voor 5 tot 12 jaar.",
+                                          "why":  "Combineer met de Winterfeesten: het museum ligt om de hoek.",
+                                          "hours":  "Dinsdag tot zondag",
+                                          "booking":  "Niet nodig",
+                                          "buggy":  true,
+                                          "parking":  "Parking Vrijdagmarkt",
+                                          "url":  "https://huisvanalijn.be/",
+                                          "photo":  {
+                                                        "src":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Huis_van_Alijn_straatkant_Kraanlei.jpg/960px-Huis_van_Alijn_straatkant_Kraanlei.jpg",
+                                                        "credit":  "Huis van Alijn",
+                                                        "license":  "CC BY-SA 4.0",
+                                                        "caption":  "Het museum aan de Kraanlei",
+                                                        "source":  "Wikimedia Commons",
+                                                        "page":  "https://commons.wikimedia.org/wiki/File:Huis_van_Alijn_straatkant_Kraanlei.jpg"
+                                                    },
+                                          "ageMin":  5,
+                                          "ageMax":  12
+                                      }
+                                  ]
+                     }
+                 ]
+}
